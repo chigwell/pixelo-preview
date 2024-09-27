@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import './App.css';
+import Hotjar from '@hotjar/browser';
 
 const BASE_URL = "https://pollinations.ai/p/";
 
@@ -7,10 +8,13 @@ function App() {
     const queryParams = new URLSearchParams(window.location.search);
     const paramValue = queryParams.get('i');
     const urlDecoded = decodeURIComponent(paramValue);
+    const siteId = 5151390;
+    const hotjarVersion = 6;
 
     useEffect(() => {
         document.title = `Pixelo image preview: ${urlDecoded}`;
-    }, [urlDecoded]);
+        Hotjar.init(siteId, hotjarVersion);
+    }, [urlDecoded, siteId, hotjarVersion]);
 
     return (
         <div className="App">
